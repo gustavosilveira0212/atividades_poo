@@ -1,4 +1,4 @@
-package model.entities;
+package atividade1model.entities;
 
 public class Equipamento {
 

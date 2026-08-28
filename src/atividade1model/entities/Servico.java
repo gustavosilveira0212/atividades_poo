@@ -1,4 +1,4 @@
-package model.entities;
+package atividade1model.entities;
 
 // Feito por: Gustavo Silveira Prado e Maria Fernanda Peres Gonçalves.
 

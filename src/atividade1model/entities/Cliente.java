@@ -34,6 +34,7 @@ public class Cliente {
         return "Nome do cliente: "
                 + nome
                 + ", telefone: "
-                + telefone;
+                + telefone
+                + "\n";
     }
 }

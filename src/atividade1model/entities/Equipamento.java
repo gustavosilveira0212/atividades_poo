@@ -47,6 +47,7 @@ public class Equipamento {
                 ", marca do equipamento: "
                 + marcaEquipamento
                 + ", modelo: "
-                + modelo;
+                + modelo
+                + "\n";
     }
 }

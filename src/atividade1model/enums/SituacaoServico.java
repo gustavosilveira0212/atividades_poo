@@ -1,4 +1,4 @@
-package model.enums;
+package atividade1model.enums;
 
 public enum SituacaoServico {
     PENDENTE,

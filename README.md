@@ -19,3 +19,4 @@ As atividades são mantidas de forma organizada e separada dentro do projeto, fa
 * GitHub
 
 > Repositório desenvolvido para fins acadêmicos.
+> Desenvolvido por: Gustavo Silveira Prado e Maria Fernanda Peres Gonçalves.

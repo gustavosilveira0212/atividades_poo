@@ -1,76 +1,104 @@
+<!-- Maria Fernanda Peres Gonçalves
+Gustavo Silveira Prado -->
+
 # Atividades POO 5 - Variáveis de Referência e Sobrecarga
 
 ## Questão 1: Variáveis de Referência e Relacionamento TEM-UM
 
-### `Cliente`
+### Conceito
 
-Representa um cliente do sistema de entregas.
+Quando você precisa que uma classe use dados de outra classe, você pode copiar os atributos ou criar uma referência para o objeto. Aqui a gente explorou por que usar um objeto separado é melhor.
 
-**Atributos:**
-- `nome` (`String`)
-- `cpf` (`String`)
-- `endereco` (`Endereco`) — objeto que representa o endereço do cliente.
+### Classes Implementadas
 
-**Comportamentos:** construtor, getters/setters e `toString()` que exibe os dados do cliente junto com o endereço completo.
+#### Cliente
 
-**Por que `endereco` é um objeto separado:** ao invés de copiar os atributos de endereço (rua, número, cidade) diretamente na classe `Cliente`, a gente cria uma referência para um objeto `Endereco`. Isso evita duplicação de código se outras classes também precisarem de endereço (como fornecedor, funcionário, etc.). Mudanças no endereço são feitas em um único lugar.
-
-### `Endereco`
-
-Representa um endereço que pode ser reutilizado por diferentes classes.
+Representa um cliente que possui um endereço.
 
 **Atributos:**
-- `rua` (`String`)
-- `numero` (`int`)
-- `cidade` (`String`)
+- `nome` (String)
+- `cpf` (String)
+- `endereco` (Endereco) — referência para um objeto de endereço
 
-**Comportamentos:** construtor, getters/setters e `toString()` que formata a exibição do endereço.
+**Comportamentos:** construtor que recebe nome, CPF e endereço; getters/setters; toString() que exibe os dados do cliente junto com o endereço.
 
-**Por que existe como classe separada:** permite que qualquer entidade que tenha endereço (Cliente, Fornecedor, Funcionário, etc.) reutilize a mesma classe sem duplicação. Além disso, se for necessário adicionar novos atributos ao endereço (CEP, bairro, complemento), basta alterar uma única classe.
+#### Endereco
+
+Representa um endereço que pode ser usado por qualquer entidade do sistema.
+
+**Atributos:**
+- `rua` (String)
+- `numero` (int)
+- `cidade` (String)
+
+**Comportamentos:** construtor, getters/setters, toString() que formata a exibição do endereço.
+
+### Por que usar uma referência para Endereco
+
+Ao invés de copiar `rua`, `numero` e `cidade` diretamente na classe Cliente, a gente cria um objeto Endereco separado. Isso evita duplicação: se depois precisar que Fornecedor, Funcionário ou outro tenha endereço também, reutiliza a mesma classe. Se precisar adicionar CEP ou bairro, altera em um só lugar.
+
+### Pontos-chave
+
+1. **Variáveis de referência** não armazenam o objeto em si, armazenam o endereço dele na memória
+2. **Stack** guarda a referência; **Heap** guarda o objeto de verdade
+3. **Null** significa que a referência não aponta para nenhum objeto
+4. **Reutilização** fica mais fácil quando as coisas são separadas em classes
 
 ---
 
 ## Questão 2: Sobrecarga de Métodos
 
-### `Ingresso`
+### Conceito
 
-Representa um ingresso de cinema com diferentes formas de calcular o valor final dependendo de desconto.
+Sobrecarga permite criar vários métodos com o mesmo nome mas com parâmetros diferentes. Java sabe qual usar baseado nos parâmetros que você passa.
+
+### Classe Implementada
+
+#### Ingresso
+
+Representa um ingresso de cinema com diferentes formas de calcular o preço final.
 
 **Atributos:**
-- `filme` (`String`)
-- `valor` (`double`) — valor base do ingresso.
+- `filme` (String)
+- `valor` (double) — preço base do ingresso
 
-**Comportamentos:** construtor e três versões sobrecarregadas de `calcularValor()`:
+**Comportamentos:** construtor e três versões de calcularValor():
 
-- `calcularValor()` — sem parâmetros, retorna o valor normal do ingresso. Usado quando não há desconto.
+1. `calcularValor()` — sem parâmetros, retorna o valor normal
+2. `calcularValor(double percentualDesconto)` — recebe percentual (tipo 10 para 10%), retorna com desconto percentual
+3. `calcularValor(double desconto, boolean descontoFixo)` — se descontoFixo for true, subtrai o valor fixo; senão retorna o valor normal
 
-- `calcularValor(double percentualDesconto)` — recebe um percentual (ex: 10 para 10%), calcula e retorna o valor com desconto percentual aplicado.
+### Por que sobrecarga aqui
 
-- `calcularValor(double desconto, boolean descontoFixo)` — recebe um valor de desconto e um booleano. Se `descontoFixo` é true, subtrai o valor fixo; se é false, retorna o valor normal. Usado para descontos em valores fixos (ex: R$ 15).
+Se usássemos nomes diferentes como `calcularValorNormal()`, `calcularValorComPercentual()`, `calcularValorComFixo()`, o código fica confuso. Com sobrecarga, sempre usa `calcularValor()` e o Java escolhe qual chamar. É mais intuitivo porque o conceito é o mesmo — calcular o preço — só muda *como*.
 
-**Por que sobrecarga ao invés de nomes diferentes:** se usássemos nomes diferentes como `calcularValorSemDesconto()`, `calcularValorComPercentual()`, `calcularValorComFixo()`, o código fica mais confuso. Com sobrecarga, quem usa a classe chama sempre `calcularValor()` e o Java escolhe qual método usar baseado nos parâmetros. É mais intuitivo porque o conceito é o mesmo — calcular valor — só muda *como* calcular.
+### Vantagem
 
-**Desvantagem:** se existissem muitas versões sobrecarregadas, ficaria difícil saber qual usar. Nesse caso com três versões está tranquilo.
+O código fica mais limpo e fácil de usar. Quem está usando a classe não precisa memorizar nomes diferentes de métodos.
+
+### Desvantagem
+
+Se tiver muitas versões sobrecarregadas, fica difícil saber qual usar. Precisa documentar bem ou o código fica confuso.
 
 ---
 
-## Como rodar
+## Como Rodar
 
-Compile:
+**Compilar:**
 ```bash
 javac -d bin src/atividade5model/**/*.java
 ```
 
-Execute:
+**Executar:**
 ```bash
 java -cp bin atividade5model.principalatividade5.Main
 ```
 
-Isso mostra na tela o valor do ingresso em três situações diferentes: sem desconto, com desconto percentual e com desconto fixo.
+Vai mostrar o valor do ingresso em três situações: sem desconto, com percentual e com fixo.
 
 ---
 
-## Documentação das respostas
+## Documentação das Respostas
 
-- `justify1.md` — respostas detalhadas das questões 1.1 a 1.9
-- `justify2.md` — respostas detalhadas das questões 2.1 a 2.10
+- `justify1.md` — respostas completas das questões 1.1 a 1.9
+- `justify2.md` — respostas completas das questões 2.1 a 2.10

@@ -1,4 +1,4 @@
-package atividade5model.principalatividade5;
+package atividade5model.principal;
 
 import atividade5model.entities.Ingresso;
 

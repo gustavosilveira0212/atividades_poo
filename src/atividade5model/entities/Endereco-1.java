@@ -5,13 +5,13 @@ public class Endereco {
     private int numero;
     private String cidade;
 
-    public Endereco (
+    public Endereco(
         String rua,
         int numero,
         String cidade) {
-    this.rua = rua;
-    this.numero = numero;
-    this.cidade = cidade;
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
     }
 
     // public void setRua(String rua) {
@@ -40,10 +40,8 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Rua: " +
-        rua + '\n'
-        + "Número: " + numero + 'n'
-        + "Cidade: " + cidade
-        + '\n';
+        return "Rua: " + rua + '\n'
+        + "Número: " + numero + '\n'
+        + "Cidade: " + cidade + '\n';
     }
 }

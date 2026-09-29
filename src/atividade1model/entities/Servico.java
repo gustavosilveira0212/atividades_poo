@@ -2,7 +2,7 @@ package atividade1model.entities;
 
 // Feito por: Gustavo Silveira Prado e Maria Fernanda Peres Gonçalves.
 
-import model.enums.SituacaoServico;
+import atividade1model.enums.SituacaoServico;
 
 public class Servico {
 

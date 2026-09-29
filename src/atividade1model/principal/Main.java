@@ -4,7 +4,7 @@ import atividade1model.entities.Cliente;
 import atividade1model.entities.Equipamento;
 import atividade1model.entities.Servico;
 
-import model.enums.SituacaoServico;
+import atividade1model.enums.SituacaoServico;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,15 +1,19 @@
 package atividade5model.principalatividade5;
 
-import atividade5model.entities.Endereco;
-import atividade5model.entities.Cliente;
+import atividade5model.entities.Ingresso;
 
 public class Main {
     public static void main(String[] args) {
-        Endereco endereco = new Endereco("Rua das flores", 100, "Goiânia");
+        Ingresso ingresso = new Ingresso("Homem Aranha", 50.00);
 
-        Cliente cliente = new Cliente("Gustavo", "123.456.789-00", endereco);
+        // Sem desconto
+        System.out.println("Filme: " + ingresso.getFilme());
+        System.out.println("Valor normal: R$ " + ingresso.calcularValor());
 
-        System.out.print(cliente);
+        // Com desconto percentual (10%)
+        System.out.println("Valor com 10% de desconto: R$ " + ingresso.calcularValor(10));
 
+        // Com desconto fixo
+        System.out.println("Valor com desconto fixo de R$ 15: R$ " + ingresso.calcularValor(15, true));
     }
 }
